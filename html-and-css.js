@@ -82,6 +82,9 @@
         col = 0;
         return;
       }
+      // CoreMirror returns the leading whitespace of a multi-line comment line as a separate token
+      if (commentMode == 'cmultiline' && style === null && !text.trim())
+        return;
       if (commentMode == 'csingleline' && accum.length &&
           style == "comment") {
         match = text.match(START_COMMENT_REGEXP);
